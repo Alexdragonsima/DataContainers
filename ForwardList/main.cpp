@@ -1,4 +1,4 @@
-#include<iostream>
+п»ї#include<iostream>
 using namespace std;
 
 #define tab	"\t"
@@ -6,8 +6,8 @@ using namespace std;
 class Element
 {
 protected:
-	int Data;		//значение элемента
-	Element* pNext;	//указатель на следующий элемент
+	int Data;		//Р·РЅР°С‡РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
+	Element* pNext;	//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅС‚
 public:
 	Element(int Data, Element* pNext = nullptr) :Data(Data), pNext(pNext)
 	{
@@ -26,7 +26,7 @@ class ForwardList
 public:
 	ForwardList()
 	{
-		Head = nullptr;	//когда список пуст его голова указывает на ноль
+		Head = nullptr;	//РєРѕРіРґР° СЃРїРёСЃРѕРє РїСѓСЃС‚ РµРіРѕ РіРѕР»РѕРІР° СѓРєР°Р·С‹РІР°РµС‚ РЅР° РЅРѕР»СЊ
 		cout << "Lconstructor:\t" << this << endl;
 	}
 	~ForwardList()
@@ -37,30 +37,30 @@ public:
 	//			Adding elements:
 	void push_front(int Data)
 	{
-		//1) Создаем новый элемент
+		//1) РЎРѕР·РґР°РµРј РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
 
-		//2) вкл новый элемент в список
+		//2) РІРєР» РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РІ СЃРїРёСЃРѕРє
 		New->pNext = Head;
 
-		//3) переводим голову на новый элемент
+		//3) РїРµСЂРµРІРѕРґРёРј РіРѕР»РѕРІСѓ РЅР° РЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Head = New;
 	}
 
 	void push_back(int Data)
 	{
 		if (Head == nullptr)return push_front(Data);
-		//1)доходим до конца списка
+		//1)РґРѕС…РѕРґРёРј РґРѕ РєРѕРЅС†Р° СЃРїРёСЃРєР°
 		Element* Temp = Head;
 		while (Temp->pNext)
 		{
 			Temp = Temp->pNext;
 		}
 
-		//2)создаем нновый элемент
+		//2)СЃРѕР·РґР°РµРј РЅРЅРѕРІС‹Р№ СЌР»РµРјРµРЅС‚
 		Element* New = new Element(Data);
 
-		//3)добавляем элемент в конец
+		//3)РґРѕР±Р°РІР»СЏРµРј СЌР»РµРјРµРЅС‚ РІ РєРѕРЅРµС†
 		Temp->pNext = New;
 	}
 	
@@ -68,12 +68,12 @@ public:
 	void print()const
 	{
 		cout << "Head:/t" << Head << endl;
-		Element* Temp = Head;	//Temp= это итератор
-		//итератор- эьо указатель. при помощи которого можно перебирать элементы структуры данных
+		Element* Temp = Head;	//Temp= СЌС‚Рѕ РёС‚РµСЂР°С‚РѕСЂ
+		//РёС‚РµСЂР°С‚РѕСЂ- СЌСЊРѕ СѓРєР°Р·Р°С‚РµР»СЊ. РїСЂРё РїРѕРјРѕС‰Рё РєРѕС‚РѕСЂРѕРіРѕ РјРѕР¶РЅРѕ РїРµСЂРµР±РёСЂР°С‚СЊ СЌР»РµРјРµРЅС‚С‹ СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…
 		while (Temp)
 		{
 			cout << Temp << tab << Temp->Data << tab << Temp->pNext << endl;
-			Temp = Temp->pNext;	//переход на следующий элемен
+			Temp = Temp->pNext;	//РїРµСЂРµС…РѕРґ РЅР° СЃР»РµРґСѓСЋС‰РёР№ СЌР»РµРјРµРЅ
 		}
 	}
 };
@@ -83,7 +83,7 @@ void main()
 	setlocale(LC_ALL, "");
 	//Element element(5);
 	int n;
-	cout << "введите колво элементов: "; cin >> n;	
+	cout << "РІРІРµРґРёС‚Рµ РєРѕР»РІРѕ СЌР»РµРјРµРЅС‚РѕРІ: "; cin >> n;	
 	ForwardList list;
 	for (int i = 0; i < n; i++)
 	{
