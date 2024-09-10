@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 using namespace std;
 using std::cin;
 using std::cout;
@@ -25,11 +26,17 @@ template<typename T>class List
 		Element(T Data, Element* pNext = nullptr, Element* pPrev = nullptr)
 			:Data(Data), pNext(pNext), pPrev(pPrev)
 		{
+#ifdef DEBUG
 			cout << "EConstructor:\t" << this << endl;
+
+#endif // DEBUG
 		}
 		~Element()
 		{
+#ifdef DEBUG
 			cout << "EDestructor:\t" << this << endl;
+
+#endif // DEBUG
 		}
 		friend class List;
 	}*Head, * Tail;
@@ -58,16 +65,20 @@ template<typename T>class List
 		}
 	};
 public:
-	class ConstIterator:public ConstBaseIterator
+	class ConstIterator :public ConstBaseIterator
 	{
 	public:
 		ConstIterator(Element* Temp = nullptr) :ConstBaseIterator(Temp)
 		{
+#ifdef DEBUG
 			cout << "ItConstructor:\t" << this << endl;
+#endif // DEBUG
 		}
 		~ConstIterator()
 		{
+#ifdef DEBUG
 			cout << "ItDectructor:\t" << this << endl;
+#endif // DEBUG
 		}
 		//							incremento/decremento
 		ConstIterator& operator++()
@@ -94,16 +105,22 @@ public:
 		}
 
 	};
-	class ConstReverceIterator:public ConstBaseIterator
+	class ConstReverceIterator :public ConstBaseIterator
 	{
 	public:
 		ConstReverceIterator(Element* Temp = nullptr) :ConstBaseIterator(Temp)
 		{
+#ifdef DEBUG
 			cout << "RItConstructot:\t" << this << endl;
+
+#endif // DEBUG
 		}
 		~ConstReverceIterator()
 		{
+#ifdef DEBUG
 			cout << "RItDestructor:\t" << this << endl;
+
+#endif // DEBUG
 		}
 		//					increment//decrement
 		ConstReverceIterator& operator++()
@@ -133,8 +150,8 @@ public:
 	class Iterator :public ConstIterator
 	{
 	public:
-		Iterator(Element* Temp=nullptr):ConstIterator(Temp){}
-		~Iterator(){}
+		Iterator(Element* Temp = nullptr) :ConstIterator(Temp) {}
+		~Iterator() {}
 
 		T& operator*()
 		{
@@ -145,7 +162,7 @@ public:
 	{
 	public:
 		ReverceIterator(Element* Temp = nullptr) :ConstReverceIterator(Temp) {}
-		~ReverceIterator(){}
+		~ReverceIterator() {}
 
 		T& operator*()
 		{
@@ -234,7 +251,7 @@ public:
 			//New->pNext = Head;
 			//Head->pPrev = New;
 			//Head = New;
-			
+
 			Head = Head->pPrev = new Element(Data, Head);
 		}
 		size++;
@@ -345,14 +362,14 @@ public:
 
 		for (Element* Temp = Head; Temp; Temp = Temp->pNext)
 			cout
-				<< Temp->pPrev << tab
-				<< Temp << tab
-				<< Temp->Data << tab
-				<< Temp->pNext << endl;
+			<< Temp->pPrev << tab
+			<< Temp << tab
+			<< Temp->Data << tab
+			<< Temp->pNext << endl;
 
-			cout << "Tail:\t" << Tail << endl;
-			cout << "Колличество элементов списка: " << size << endl;
-			cout << delimiter << endl;
+		cout << "Tail:\t" << Tail << endl;
+		cout << "Колличество элементов списка: " << size << endl;
+		cout << delimiter << endl;
 	}
 	void reverce_print()const
 	{
@@ -380,7 +397,7 @@ template<typename T>List<T> operator+(const List<T>& left, const List<T>& right)
 		buffer.push_back(*it);
 		//*it *= 10;
 	}
-		return buffer;
+	return buffer;
 }
 template<typename T>void Grow(List<T>& list)
 {
@@ -394,7 +411,7 @@ template<typename T>void Grow(List<T>& list)
 void main()
 {
 	setlocale(LC_ALL, "");
-	
+
 #ifdef BASE_CHECK
 	int n;
 	cout << "Введите количество элементов: "; cin >> n;
@@ -444,4 +461,10 @@ void main()
 	for (int i : list3)cout << i << tab; cout << endl;
 	Grow(list3);
 	for (int i : list3)cout << i << tab; cout << endl;
+
+	List<double> d_list = { 2.7,3.14,5.4,8.3 };
+	for (double i : d_list)cout << i << tab; cout << endl;
+
+	List<std::string>s_list = { "Хорошо","живет","на","свете","НоутБук" };
+	for (std::string i : s_list)cout << i << tab; cout << endl;
 }
